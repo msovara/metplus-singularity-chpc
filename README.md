@@ -7,7 +7,7 @@ This guide provides step-by-step instructions for installing and running METplus
 - Basic Linux command-line knowledge
 - Project allocation on Lengau
 
-## Installation Steps
+## Installation Steps - Developer Notes
 
 ### 1. Load Singularity Module
 ```bash
@@ -26,6 +26,13 @@ singularity pull docker://dtcenter/metplus:6.0-latest
 ```
 
 **Note:** Could you check for newer versions and update the URL accordingly?
+
+### 3. Verify the Image
+Check if the image works and manually verify its metadata:
+```bash
+singularity run wsclean_latest.sif
+singularity inspect wsclean_latest.sif
+```
 
 ### 3. Run the Container
 You can now run the container, mounting your working directory:
