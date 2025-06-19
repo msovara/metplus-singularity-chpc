@@ -55,6 +55,20 @@ Create the required directories:
 ```sh
 mkdir -p input config output logs
 ```
+### 📁 Directory Structure
+```text
+your_project_directory/
+├── 📂 input/                # Input data
+│   ├── file1.grib
+│   ├── file2.nc
+│   └── ...
+├── 📂 config/               # Configuration files
+│   ├── your_metplus_config.conf
+│   └── ...
+├── 📂 output/               # Results directory
+├── 📂 logs/                 # Execution logs
+└── 📄 metplus_pbs_job.sh    # PBS job script
+```
 - Place your input data files in `input/`
 - Place your METplus config files in `config/`
 - `output/` and `logs/` will be populated by METplus
@@ -68,7 +82,7 @@ Edit `metplus_job.pbs`:
 ### 3. ⚡ Submit the Job
 
 ```sh
-qsub metplus_pbs_job.sh
+qsub metplus_job.pbs
 ```
 ### 4. 🔍 Check Results
 - Output files will be in `output/`
@@ -126,22 +140,6 @@ Assumes these directories are subdirectories of your job submission directory ($
 - Handles errors and provides helpful messages
 
 ---
-
-### 📁 Directory Structure
-
-```text
-your_project_directory/
-├── 📂 input/                # Input data
-│   ├── file1.grib
-│   ├── file2.nc
-│   └── ...
-├── 📂 config/               # Configuration files
-│   ├── your_metplus_config.conf
-│   └── ...
-├── 📂 output/               # Results directory
-├── 📂 logs/                 # Execution logs
-└── 📄 metplus_pbs_job.sh    # PBS job script
-```
 
 ## Notes
 
