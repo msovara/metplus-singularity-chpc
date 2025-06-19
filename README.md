@@ -2,12 +2,12 @@
 
 This guide provides step-by-step instructions for installing and running METplus via Singularity (Apptainer) on the CHPC Lengau cluster.
 
-## Prerequisites
+## 📋 Prerequisites
 - CHPC Lengau account
 - Basic Linux command-line knowledge
 - Project allocation on Lengau
 
-## Installation Steps - Developer Notes
+## 🔧 Installation Steps - Developer Notes
 
 ### 1. Load Singularity Module
 ```bash
@@ -25,62 +25,57 @@ To pull from Sylabs Cloud:
 singularity pull docker://dtcenter/metplus:6.0-latest
 ```
 
-**Note:** Could you check for newer versions and update the URL accordingly?
+ℹ️ **Note:** Could you check for newer versions and update the URL accordingly?
 
-### 3. Verify the Image
+### 3. ✅ Verify the Image
 Check if the image works and manually verify its metadata:
 ```bash
 singularity run metplus_6.0-latest.sif
 singularity inspect metplus_6.0-latest.sif
 ```
 
-### 4. List Installed packages
-For Debian/Ubuntu-based containers
+### 4. 📦 List Installed packages
+For Debian/Ubuntu-based containers:
 ```bash
 singularity exec metplus_6.0-latest.sif dpkg --list
 ```
 
-### 5. Check Libraries Installed
+### 5. 📚 Check Libraries Installed
 ```bash
 singularity exec metplus_6.0-latest.sif ldconfig -p
 ```
 ... End of Developer Notes
 ---
  
-## User Notes
+## 👤 User Notes
+## 🚀 Quick Start
 
-
-## Quick Start
-### 1. Prepare Your Directories
-
+### 1. 🗂️ Prepare Your Directories
 Create the required directories:
 ```sh
 mkdir -p input config output logs
 ```
-
 - Place your input data files in `input/`
 - Place your METplus config files in `config/`
 - `output/` and `logs/` will be populated by METplus
 
-### 2. Edit the PBS Job Script
+### 2. ✏️ Edit the PBS Job Script
 
 Edit `metplus_pbs_job.sh`:
 - Set your project code, username, and email in the PBS directives.
 - Set the correct path to your main METplus config file in the `CONFIG_FILE` variable.
 
-### 3. Submit the Job
+### 3. ⚡ Submit the Job
 
 ```sh
 qsub metplus_pbs_job.sh
 ```
-
-### 4. Check Results
-
+### 4. 🔍 Check Results
 - Output files will be in `output/`
 - Log files will be in `logs/`
 - PBS job output/error will be in the paths specified in the script
 
-## Example PBS Job Script
+## 📜 Example PBS Job Script ```metplus_job.pbs```
 
 ```bash
 #!/bin/bash
@@ -132,23 +127,20 @@ Assumes these directories are subdirectories of your job submission directory ($
 
 ---
 
-Here is a recommended directory structure for your METplus PBS job, showing the main directories and typical subdirectories/files you might have:
+### 📁 Directory Structure
 
 ```text
 your_project_directory/
-├── input/                # Input data (GRIB/NetCDF files)
+├── 📂 input/                # Input data
 │   ├── file1.grib
 │   ├── file2.nc
-│   └── ...               # More input files
-├── config/               # METplus configuration files
-│   ├── your_metplus_config.conf   # Main config file
-│   ├── other_config.conf
-│   └── ...               # More config files
-├── output/               # Results directory (created by METplus)
-│   └── ...               # Output files will be written here
-├── logs/                 # Execution logs (created by METplus)
-│   └── ...               # Log files will be written here
-└── metplus_pbs_job.sh    # Your PBS job script
+│   └── ...
+├── 📂 config/               # Configuration files
+│   ├── your_metplus_config.conf
+│   └── ...
+├── 📂 output/               # Results directory
+├── 📂 logs/                 # Execution logs
+└── 📄 metplus_pbs_job.sh    # PBS job script
 ```
 
 ## Notes
