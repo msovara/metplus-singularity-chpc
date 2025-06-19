@@ -15,11 +15,16 @@ module avail singularity
 module load singularity
 ```
 
-### 2. Download METplus Container
+### 2. Find the METplus Singularity Image
+You can either:
+- Pull the official METplus container from a registry (e.g., Sylabs Cloud or Docker Hub), or
+- Use a pre-existing image if one is available on Lengau.
+
+To pull from Sylabs Cloud:
 ```bash
-cd $SCRATCH
-wget https://dtcenter.org/sites/default/files/community-code/metplus/singularity/images/metplus-5.0.0.sif
+singularity pull library://dtcenter/containers/metplus:latest
 ```
+
 **Note:** Check for newer versions and update the URL accordingly.
 
 ### 3. Create Workspace
