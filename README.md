@@ -25,7 +25,7 @@ To pull from Sylabs Cloud:
 singularity pull library://dtcenter/containers/metplus:latest
 ```
 
-**Note:** Check for newer versions and update the URL accordingly.
+**Note:** Could you check for newer versions and update the URL accordingly?
 
 ### 3. Create Workspace
 ```bash
