@@ -1,0 +1,34 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=24:mpiprocs=24
+#PBS -P PRJT1234
+#PBS -q smp
+#PBS -l walltime=4:00:00
+#PBS -o /mnt/lustre/users/USERNAME/OMP_test/test1.out
+#PBS -e /mnt/lustre/users/USERNAME/OMP_test/test1.err
+#PBS -m abe
+#PBS -M youremail@ddress
+
+ulimit -s unlimited
+
+# === User configuration ===
+SINGULARITY_IMAGE="/home/apps/chpc/earth/metplus-6.0.0-singularity-container/metplus_6.0-latest.sif"
+WORKSPACE_DIR="$PBS_O_WORKDIR"
+INPUT_DIR="${WORKSPACE_DIR}/input"
+CONFIG_DIR="${WORKSPACE_DIR}/config"
+OUTPUT_DIR="${WORKSPACE_DIR}/output"
+LOGS_DIR="${WORKSPACE_DIR}/logs"
+CONFIG_FILE="your_metplus_config.conf"  # Edit as needed
+
+# === Load modules ===
+module purge
+module load chpc/singularity/3.5.3
+module load chpc/earth/metplus/6.0.0
+
+# === Run METplus in the container ===
+cd "$WORKSPACE_DIR"
+singularity exec \
+  --bind "$INPUT_DIR":/input \
+  --bind "$CONFIG_DIR":/config \
+  --bind "$OUTPUT_DIR":/output \
+  --bind "$LOGS_DIR":/logs \
+  "$SINGULARITY_IMAGE" run_metplus.py /config/"$CONFIG_FILE"
