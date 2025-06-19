@@ -22,7 +22,7 @@ You can either:
 
 To pull from Sylabs Cloud:
 ```bash
-singularity pull library://dtcenter/containers/metplus:latest
+singularity pull docker://dtcenter/metplus:6.0-latest
 ```
 
 **Note:** Could you check for newer versions and update the URL accordingly?
