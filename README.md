@@ -17,7 +17,7 @@ module load singularity
 
 ### 2. Find the METplus Singularity Image
 You can either:
-- Pull the official METplus container from a registry (e.g., Sylabs Cloud or Docker Hub), or
+- Pull the official METplus container from a registry (e.g., Sylabs Cloud or Docker Hub: https://hub.docker.com/r/dtcenter/metplus/tags), or
 - Use a pre-existing image if one is available on Lengau.
 
 To pull from Sylabs Cloud:
