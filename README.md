@@ -11,8 +11,8 @@ This guide provides step-by-step instructions for installing and running METplus
 
 ### 1. Load Singularity Module
 ```bash
-module avail singularity
-module load singularity
+module avail 2>&1 | grep -i singularity
+module load chpc/singularity/3.5.3
 ```
 
 ### 2. Find the METplus Singularity Image
