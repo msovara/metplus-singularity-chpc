@@ -40,6 +40,11 @@ For Debian/Ubuntu-based containers
 singularity exec metplus_6.0-latest.sif dpkg --list
 ```
 
+### 5. Check Libraries Installed
+```bash
+singularity exec metplus_6.0-latest.sif ldconfig -p
+```
+
 ### 3. Run the Container
 You can now run the container, mounting your working directory:
 ```bash
