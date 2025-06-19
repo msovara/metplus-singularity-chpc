@@ -93,9 +93,9 @@ qsub metplus_job.pbs
 
 ```bash
 #!/bin/bash
-#PBS -l select=1:ncpus=24:mpiprocs=24
+#PBS -l select=1:ncpus=1:mpiprocs=1
 #PBS -P PRJT1234
-#PBS -q smp
+#PBS -q serial
 #PBS -l walltime=4:00:00
 #PBS -o /mnt/lustre/users/USERNAME/OMP_test/test1.out
 #PBS -e /mnt/lustre/users/USERNAME/OMP_test/test1.err
