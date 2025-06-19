@@ -27,11 +27,16 @@ singularity pull library://dtcenter/containers/metplus:latest
 
 **Note:** Could you check for newer versions and update the URL accordingly?
 
-### 3. Create Workspace
+### 3. Run the Container
+You can now run the container, mounting your working directory:
 ```bash
 mkdir -p metplus_workdir/{input,config,output,logs}
 cd metplus_workdir
+singularity exec --bind $PWD:/workspace metplus_latest.sif bash
 ```
+- Replace metplus_latest.sif with the actual filename if different.
+- This command drops you into a shell inside the container with your current directory mounted at /workspace.
+  
 Where: 
 - input/: Input data (GRIB/NetCDF files)
 - config/: METplus configuration files
@@ -39,7 +44,13 @@ Where:
 - logs/: Execution logs
 ---
 
-## Configuration Setup
+### 4. Use METplus Inside the Container
+Inside the container, you can run METplus commands as usual. For example:
+```bash
+cd /workspace
+run_metplus.py /workspace/path/to/your/configs
+```
+
 
 ### 1. Create METplus Config
 Create your configuration file in config/:
