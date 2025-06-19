@@ -44,7 +44,7 @@ singularity exec metplus_6.0-latest.sif dpkg --list
 ```bash
 singularity exec metplus_6.0-latest.sif ldconfig -p
 ```
-... End of Developer Notes
+... End of Developer Notes.
 ---
  
 ## 👤 User Notes
