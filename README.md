@@ -44,7 +44,9 @@ singularity exec metplus_6.0-latest.sif dpkg --list
 ```bash
 singularity exec metplus_6.0-latest.sif ldconfig -p
 ```
-
+... End of Developer Notes
+---
+ User Notes
 ### 3. Run the Container
 You can now run the container, mounting your working directory:
 ```bash
