@@ -30,8 +30,8 @@ singularity pull docker://dtcenter/metplus:6.0-latest
 ### 3. Verify the Image
 Check if the image works and manually verify its metadata:
 ```bash
-singularity run wsclean_latest.sif
-singularity inspect wsclean_latest.sif
+singularity run metplus_6.0-latest.sif
+singularity inspect metplus_6.0-latest.sif
 ```
 
 ### 3. Run the Container
