@@ -11,7 +11,8 @@ This guide provides step-by-step instructions for installing and running METplus
 
 ### 1. Load Singularity Module
 ```bash
-module load chpc/apptainer/1.2.4
+module avail singularity
+module load singularity
 ```
 
 ### 2. Download METplus Container
