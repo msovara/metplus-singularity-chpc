@@ -61,7 +61,7 @@ mkdir -p input config output logs
 
 ### 2. ✏️ Edit the PBS Job Script
 
-Edit `metplus_pbs_job.sh`:
+Edit `metplus_job.pbs`:
 - Set your project code, username, and email in the PBS directives.
 - Set the correct path to your main METplus config file in the `CONFIG_FILE` variable.
 
