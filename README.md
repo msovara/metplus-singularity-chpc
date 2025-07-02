@@ -1,5 +1,7 @@
 # 🚀 METplus Singularity Setup on CHPC Lengau Cluster
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15790478.svg)](https://doi.org/10.5281/zenodo.15790478)
+
 This guide provides step-by-step instructions for installing and running METplus via Singularity (Apptainer) on the CHPC Lengau cluster.
 
 ## 📋 Prerequisites
