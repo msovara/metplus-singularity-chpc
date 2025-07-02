@@ -153,6 +153,32 @@ Assumes these directories are subdirectories of your job submission directory ($
 
 For issues or questions, please open an issue in this repository or contact the CHPC support team at: https://users.chpc.ac.za/helpdesk/tickets/submit/
 
+--- 
+
+## 📚 Citation
+If you use this repository or its contents in your work, please cite it as follows:
+
+Sovara, M. (2025). METplus Port to Lengau HPC – Job Scripts and Integration Examples (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.15790478
+
+```bibtex
+@software{sovara_2025,
+  author       = {Sovara, Mthetho},
+  title        = {{METplus Port to Lengau HPC – Job Scripts and Integration Examples}},
+  version      = {v1.0.0},
+  date         = {2025-07-02},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.15790478},
+  url          = {https://doi.org/10.5281/zenodo.15790478}
+}
+```
+
+## 🔖 License
+MIT License for job scripts and configuration files.
+METplus itself is licensed separately, see METplus GitHub (https://github.com/dtcenter/METplus) for details.
+
+## 🤝 Acknowledgements
+This work builds on the open-source METplus framework developed by the Developmental Testbed Center (DTC) and NCAR.
+
 ---
 
 
