@@ -91,42 +91,67 @@ qsub metplus_job.pbs
 - Log files will be in `logs/`
 - PBS job output/error will be in the paths specified in the script
 
-## 📜 Example PBS Job Script ```metplus_job.pbs```
+## 📜 Modular PBS Job Script Example ```metplus_job.pbs```
 
 ```bash
 #!/bin/bash
 #PBS -l select=1:ncpus=1:mpiprocs=1
-#PBS -P PRJT1234
+#PBS -P ERTH1022
 #PBS -q serial
-#PBS -l walltime=4:00:00
-#PBS -o /mnt/lustre/users/USERNAME/OMP_test/test1.out
-#PBS -e /mnt/lustre/users/USERNAME/OMP_test/test1.err
+#PBS -l walltime=1:00:00
+#PBS -o /mnt/lustre/users/lmakgati/METplus_validation/met.out
+#PBS -e /mnt/lustre/users/lmakgati/METplus_validation/met.err
 #PBS -m abe
-#PBS -M youremail@ddress
+#PBS -M youremailaddress
 
+# === Unset limits ===
 ulimit -s unlimited
 
-# === User configuration ===
-SINGULARITY_IMAGE="/home/apps/chpc/earth/metplus-6.0.0-singularity-container/metplus_6.0-latest.sif"
+# === Define Paths ===
 WORKSPACE_DIR="$PBS_O_WORKDIR"
+SINGULARITY_IMAGE="/home/apps/chpc/earth/metplus-6.0.0-singularity-container/metplus_6.0-latest.sif"
+CONFIG_FILE="Rainfall.conf"
+
+# Internal directories
 INPUT_DIR="${WORKSPACE_DIR}/input"
 CONFIG_DIR="${WORKSPACE_DIR}/config"
 OUTPUT_DIR="${WORKSPACE_DIR}/output"
 LOGS_DIR="${WORKSPACE_DIR}/logs"
-CONFIG_FILE="your_metplus_config.conf"  # Edit as needed
+#TMPDIR="${WORKSPACE_DIR}/tmp"
 
-# === Load modules ===
+# External data sources
+MODEL_DATA_DIR="/mnt/lustre/users/lmakgati/model_data"
+OBS_DATA_DIR="/mnt/lutre/users/lmakgati/obs_data"
+
+# === Validation Checks ===
+if [ ! -f "${CONFIG_DIR}/${CONFIG_FILE}" ]; then
+    echo "ERROR: Config file ${CONFIG_DIR}/${CONFIG_FILE} not found!"
+    exit 1
+fi
+
+# === Load Environment Modules ===
 module purge
 module load chpc/singularity/3.5.3
 module load chpc/earth/metplus/6.0.0
 
-# === Run METplus in the container ===
+# === Log Run Info ===
+echo "Starting METplus run at $(date)"
+echo "Working directory       : $WORKSPACE_DIR"
+echo "Singularity image       : $SINGULARITY_IMAGE"
+echo "Configuration file      : ${CONFIG_DIR}/${CONFIG_FILE}"
+echo "Model data mount        : $MODEL_DATA_DIR -> /model_data"
+echo "Observation data mount  : $OBS_DATA_DIR -> /obs_data"
+
+# === Run METplus in Singularity Container ===
 cd "$WORKSPACE_DIR"
 singularity exec \
+  --env INPUT="$INPUT_DIR",OUTPUT="$OUTPUT_DIR",CONFIG="$CONFIG_DIR",LOGS="$LOGS_DIR" \
   --bind "$INPUT_DIR":/input \
   --bind "$CONFIG_DIR":/config \
   --bind "$OUTPUT_DIR":/output \
   --bind "$LOGS_DIR":/logs \
+  --bind "$MODEL_DATA_DIR":/model_data \
+  --bind "$OBS_DATA_DIR":/obs_data \
   "$SINGULARITY_IMAGE" run_metplus.py /config/"$CONFIG_FILE"
 ```
 This script binds the following directories for use inside the container:
