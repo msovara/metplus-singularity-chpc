@@ -92,6 +92,7 @@ qsub metplus_job.pbs
 - PBS job output/error will be in the paths specified in the script
 
 ## 📜 Modular PBS Job Script Example ```metplus_job.pbs```
+Here is a modular version of the METplus_job.pbs script, organised with a reusable and easy-to-maintain structure:
 
 ```bash
 #!/bin/bash
@@ -99,8 +100,8 @@ qsub metplus_job.pbs
 #PBS -P ERTH1022
 #PBS -q serial
 #PBS -l walltime=1:00:00
-#PBS -o /mnt/lustre/users/lmakgati/METplus_validation/met.out
-#PBS -e /mnt/lustre/users/lmakgati/METplus_validation/met.err
+#PBS -o /mnt/lustre/users/username/METplus_validation/met.out
+#PBS -e /mnt/lustre/users/username/METplus_validation/met.err
 #PBS -m abe
 #PBS -M youremailaddress
 
@@ -120,8 +121,8 @@ LOGS_DIR="${WORKSPACE_DIR}/logs"
 #TMPDIR="${WORKSPACE_DIR}/tmp"
 
 # External data sources
-MODEL_DATA_DIR="/mnt/lustre/users/lmakgati/model_data"
-OBS_DATA_DIR="/mnt/lutre/users/lmakgati/obs_data"
+MODEL_DATA_DIR="/mnt/lustre/users/username/model_data"
+OBS_DATA_DIR="/mnt/lutre/users/username/obs_data"
 
 # === Validation Checks ===
 if [ ! -f "${CONFIG_DIR}/${CONFIG_FILE}" ]; then
