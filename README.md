@@ -97,7 +97,7 @@ Here is a modular version of the METplus_job.pbs script, organised with a reusab
 ```bash
 #!/bin/bash
 #PBS -l select=1:ncpus=1:mpiprocs=1
-#PBS -P ERTH1022
+#PBS -P ERTHXXXX
 #PBS -q serial
 #PBS -l walltime=1:00:00
 #PBS -o /mnt/lustre/users/username/METplus_validation/met.out
